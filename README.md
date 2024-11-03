@@ -1,4 +1,4 @@
-Here's an updated `README.md` for your `xsd_generator.py` project:
+Here's the updated `README.md` with added instructions for using the `validate_xml_with_xsd.py` validator:
 
 ---
 
@@ -11,10 +11,12 @@ Here's an updated `README.md` for your `xsd_generator.py` project:
 - Generates a basic XSD template based on the parsed structure.
 - Outputs an XSD file that can be further refined for specific use cases.
 - Provides detailed information about the XML structure for verification.
+- Includes a validation tool (`validate_xml_with_xsd.py`) to ensure XML files conform to the generated XSD.
 
 ## Requirements
 - Python 3.x
 - `xml.etree.ElementTree` (standard Python library)
+- `lxml` (for XML validation)
 
 ## Installation
 Clone this repository to your local machine:
@@ -25,6 +27,7 @@ cd xsd_generator
 ```
 
 ## Usage
+### Generate an XSD
 1. Place the XML file you want to parse in the `xsd_generator` directory.
 2. Run the `xsd_generator.py` script with the XML file as an argument:
 
@@ -32,21 +35,36 @@ cd xsd_generator
 python xsd_generator.py path/to/your/exported_file.xml
 ```
 
-### Example Command
+### Validate an XML File Against an XSD
+1. Ensure you have `lxml` installed:
+   ```bash
+   pip install lxml
+   ```
+2. Run the `validate_xml_with_xsd.py` script to validate an XML file against an XSD:
+
+```bash
+python validate_xml_with_xsd.py path/to/your/exported_file.xml path/to/generated_schema.xsd
+```
+
+### Example Command for XSD Generation
 ```bash
 python xsd_generator.py example_exported_file.xml
 ```
 
-### Example Output
+### Example Command for XML Validation
+```bash
+python validate_xml_with_xsd.py example_exported_file.xml generated_schema.xsd
+```
+
+## Example Output
+### XSD Generation
 - The script will print the parsed XML structure to the terminal for verification.
 - An XSD template will be generated and displayed in the terminal.
 - The generated XSD template will be saved as `generated_schema.xsd` in the current directory.
 
-## Output Format
-The generated XSD will include:
-- Elements with their tag names and a default type of `xs:string`.
-- A nested structure reflecting the hierarchy found in the input XML.
-- Support for optional occurrences using `minOccurs="0"`.
+### XML Validation
+- The validation script will print whether the XML is valid according to the XSD.
+- If the XML is invalid, detailed error messages will be provided to help identify the issues.
 
 ### Sample XSD Output
 ```xml
@@ -71,24 +89,26 @@ To enhance the script or customize the output:
 - Adjust the script to include comments or documentation directly in the XSD.
 
 ## Example Run and Output
-**Run Command**:
+**Run Command for XSD Generation**:
 ```bash
 python xsd_generator.py exported_health_record.xml
 ```
 
-**Terminal Output**:
-```plaintext
-Path: root/PatientRecord, Tag: PatientRecord, Attributes: [], Sample: 
-Path: root/PatientRecord/patient_id, Tag: patient_id, Attributes: [], Sample: 123
-Path: root/PatientRecord/symptom, Tag: symptom, Attributes: [], Sample: shortness of breath
-Path: root/PatientRecord/timestamp, Tag: timestamp, Attributes: [], Sample: 2024-10-10
-
-Generated XSD Template:
-...
+**Run Command for Validation**:
+```bash
+python validate_xml_with_xsd.py exported_health_record.xml generated_schema.xsd
 ```
 
-**File Output**:
-The generated XSD will be saved as `generated_schema.xsd` in your current directory.
+**Terminal Output for Validation**:
+```plaintext
+XML file is valid according to the XSD.
+```
+or
+```plaintext
+XML file is invalid. Errors:
+Element 'patient_id': This element is not expected. Expected is ( name ).
+Line 3, column 15
+```
 
 ## Contributing
 Contributions are welcome! If you’d like to improve this tool:
@@ -101,4 +121,4 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 
 ---
 
-Feel free to modify this `README.md` to include additional sections or examples based on your project's needs!
+Feel free to customize this `README.md` further or let me know if there are additional sections you’d like to include!
