@@ -1,61 +1,54 @@
-Here's a sample `README.md` for your `xsd_parser` project, including instructions for usage and details about the functionality:
+Here's an updated `README.md` for your `xsd_generator.py` project:
 
 ---
 
-# XSD Parser
+# XSD Generator
 
-`xsd_parser` is a Python script designed to parse an XML file, extract its structure, and generate an initial XML Schema Definition (XSD). This tool helps in understanding and defining the structure of XML data, making it useful for validating health record exports or other XML-based data files.
+`xsd_generator.py` is a Python script designed to parse an XML file, extract its structure, and generate an initial XML Schema Definition (XSD). This tool is perfect for understanding and defining XML data structures, making it useful for validating complex data exports, such as health records or any structured data.
 
 ## Features
 - Parses XML files to identify elements, attributes, and their hierarchy.
 - Generates a basic XSD template based on the parsed structure.
 - Outputs an XSD file that can be further refined for specific use cases.
-- Provides detailed output on the XML structure for verification.
+- Provides detailed information about the XML structure for verification.
 
 ## Requirements
 - Python 3.x
-- The `xml.etree.ElementTree` module (standard Python library)
+- `xml.etree.ElementTree` (standard Python library)
 
 ## Installation
-Clone or download the repository to your local machine.
+Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/xsd_parser.git
-cd xsd_parser
+git clone https://github.com/alright-alright/xsd_generator.git
+cd xsd_generator
 ```
 
 ## Usage
-1. Place the XML file you want to parse in the `xsd_parser` directory.
-2. Run the `xsd_parser.py` script with the XML file as an argument:
+1. Place the XML file you want to parse in the `xsd_generator` directory.
+2. Run the `xsd_generator.py` script with the XML file as an argument:
 
 ```bash
-python xsd_parser.py path/to/your/exported_health_record.xml
+python xsd_generator.py path/to/your/exported_file.xml
 ```
 
 ### Example Command
 ```bash
-python xsd_parser.py exported_health_record.xml
+python xsd_generator.py example_exported_file.xml
 ```
 
-### Output
+### Example Output
 - The script will print the parsed XML structure to the terminal for verification.
 - An XSD template will be generated and displayed in the terminal.
-- The generated XSD template will be saved to a file named `generated_schema.xsd` in the current directory.
+- The generated XSD template will be saved as `generated_schema.xsd` in the current directory.
 
 ## Output Format
-The output XSD will include:
-- Elements with their tags.
-- Nested structure representing the hierarchy.
-- Sample attributes detected in the XML.
-- Data types default to `xs:string` with `minOccurs="0"` for flexibility.
+The generated XSD will include:
+- Elements with their tag names and a default type of `xs:string`.
+- A nested structure reflecting the hierarchy found in the input XML.
+- Support for optional occurrences using `minOccurs="0"`.
 
-## Customization
-You can modify the script to:
-- Handle specific data types based on content.
-- Add more complex type definitions and constraints.
-- Include attributes and any additional XSD rules.
-
-## Example Output
+### Sample XSD Output
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
@@ -71,11 +64,41 @@ You can modify the script to:
 </xs:schema>
 ```
 
+## Customization
+To enhance the script or customize the output:
+- Modify the script to handle specific data types and constraints.
+- Add more complex XSD rules, such as attributes or additional data types.
+- Adjust the script to include comments or documentation directly in the XSD.
+
+## Example Run and Output
+**Run Command**:
+```bash
+python xsd_generator.py exported_health_record.xml
+```
+
+**Terminal Output**:
+```plaintext
+Path: root/PatientRecord, Tag: PatientRecord, Attributes: [], Sample: 
+Path: root/PatientRecord/patient_id, Tag: patient_id, Attributes: [], Sample: 123
+Path: root/PatientRecord/symptom, Tag: symptom, Attributes: [], Sample: shortness of breath
+Path: root/PatientRecord/timestamp, Tag: timestamp, Attributes: [], Sample: 2024-10-10
+
+Generated XSD Template:
+...
+```
+
+**File Output**:
+The generated XSD will be saved as `generated_schema.xsd` in your current directory.
+
 ## Contributing
-If you'd like to contribute or suggest improvements, please fork the repository and submit a pull request.
+Contributions are welcome! If you’d like to improve this tool:
+- Fork the repository.
+- Make your changes.
+- Submit a pull request.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
 ---
 
+Feel free to modify this `README.md` to include additional sections or examples based on your project's needs!
